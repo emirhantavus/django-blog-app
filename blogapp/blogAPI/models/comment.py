@@ -9,4 +9,4 @@ class Comment(models.Model):
       commentDate = models.DateTimeField()
       
       def __str__(self) -> str:
-            return self.content
+            return f'a comment in {self.post} from {self.author}'

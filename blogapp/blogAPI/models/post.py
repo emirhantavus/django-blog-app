@@ -7,5 +7,5 @@ class Post(models.Model):
       content = models.TextField()
       postDate = models.DateTimeField()
       
-      def __str__(self) -> str:
-            return self.title
+      def __str__(self):
+            return f'author: {self.author} title: {self.title}'
