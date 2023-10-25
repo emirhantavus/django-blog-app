@@ -7,5 +7,6 @@ router = DefaultRouter()
 
 urlpatterns = [
 #      path('',include(router.urls)),
-      path('getusers/',signupViews.userModelView.as_view(),name='get_users')
+      path('getusers/',signupViews.userModelView.as_view(),name='get_users'),
+      path('getuser/<int:pk>/',signupViews.singleUserModelView.as_view(),name='get_user')
 ]

@@ -27,4 +27,33 @@ class userModelView(APIView):
             if serializer.is_valid():
                   serializer.save()
                   return Response({'Message':'User created'},status=status.HTTP_201_CREATED)
+
+
+class singleUserModelView(APIView):
+      def get(self,request,pk):
+            try:
+                  user = User.objects.get(pk=pk)
+                  serializer = userSerializer(user)
+                  return Response(serializer.data,status=status.HTTP_200_OK)
+            except:
+                  return Response({"message":"User not found"},status=status.HTTP_404_NOT_FOUND)
+      
+      def put(self,request,pk):
+            try:
+                  user = User.objects.get(pk=pk)
+                  serializer = userSerializer(user , data=request.data,partial=True)
+                  if serializer.is_valid():
+                        serializer.save()
+                        return Response(serializer.data,status=status.HTTP_200_OK)
+                  return Response({"message":"error"},status=status.HTTP_400_BAD_REQUEST)
+            except User.DoesNotExist:
+                  return Response({"message":"user not found"},status.HTTP_404_NOT_FOUND)
             
+      def delete(self,request,pk):
+            try:
+                  user = User.objects.get(pk=pk)
+                  user.delete()
+                  return Response({"message":"User deleted"},status=status.HTTP_204_NO_CONTENT)
+            except User.DoesNotExist:
+                  return Response({"message":"User not found"},status=status.HTTP_404_NOT_FOUND)
+                  
