@@ -3,8 +3,9 @@ from rest_framework.routers import DefaultRouter
 from .views import signupViews
 
 router = DefaultRouter()
-router.register(r'signin',signupViews.userSignIn)
+#router.register(r'signin',signupViews.userSignIn)
 
 urlpatterns = [
-      path('',include(router.urls)),
+#      path('',include(router.urls)),
+      path('getusers/',signupViews.userModelView.as_view(),name='get_users')
 ]
