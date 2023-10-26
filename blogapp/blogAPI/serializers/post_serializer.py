@@ -2,7 +2,9 @@ from rest_framework import serializers
 from ..models import Post
 
 class postSerializer(serializers.ModelSerializer):
-      postDate = serializers.DateField(format='%d/%m/%Y',input_formats=['%d/%m/%Y'])
+      postDate = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
+      author = serializers.StringRelatedField()
+      category = serializers.StringRelatedField()
       class Meta:
             model = Post
-            fields = ('author','title','postDate')
+            fields = ('title','content','category','author','postDate')
