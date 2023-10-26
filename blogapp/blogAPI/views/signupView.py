@@ -44,7 +44,7 @@ class singleUserModelView(APIView):
                   serializer = userSerializer(user , data=request.data,partial=True)
                   if serializer.is_valid():
                         serializer.save()
-                        return Response(serializer.data,status=status.HTTP_200_OK)
+                        return Response({"message":"success"},status=status.HTTP_200_OK)
                   return Response({"message":"error"},status=status.HTTP_400_BAD_REQUEST)
             except User.DoesNotExist:
                   return Response({"message":"user not found"},status.HTTP_404_NOT_FOUND)
