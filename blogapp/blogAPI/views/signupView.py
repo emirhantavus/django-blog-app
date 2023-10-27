@@ -20,8 +20,8 @@ class getUsers(ListAPIView): for create users.
 class userModelView(APIView):
       def get(self,request):
             page = int(request.GET.get('page',1))
-            per_page = 3
-            start = (page-1) * per_page
+            per_page = 20 # we can also use pagination class from rest_framework.
+            start = (page-1) * per_page # for this project, I used this method.
             end = start + per_page
             users = User.objects.all()[start:end]
             serializer = userSerializer(users,many=True)

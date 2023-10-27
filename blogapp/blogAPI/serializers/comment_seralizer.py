@@ -2,7 +2,8 @@ from rest_framework import serializers
 from ..models import Comment
 
 class commentSerializer(serializers.ModelSerializer):
-      commentDate = serializers.DateField(format='%d/%m/%Y',input_formats=['%d/%m/%Y'])
+      author = serializers.StringRelatedField()
+      commentDate = serializers.DateTimeField(format='%Y-%m-%d %H:%M')
       class Meta:
             model = Comment
-            fields = ('author','post','commentDate')
+            fields = ('author','content','commentDate')
