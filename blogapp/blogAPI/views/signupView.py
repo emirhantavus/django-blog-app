@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from ..models import User
 from ..serializers import userSerializer
+from rest_framework.pagination import PageNumberPagination
 
 '''
 class userSignIn(viewsets.ModelViewSet): #for all crud operations we use viewsets.
@@ -18,7 +19,11 @@ class getUsers(ListAPIView): for create users.
 
 class userModelView(APIView):
       def get(self,request):
-            users = User.objects.all()
+            page = int(request.GET.get('page',1))
+            per_page = 3
+            start = (page-1) * per_page
+            end = start + per_page
+            users = User.objects.all()[start:end]
             serializer = userSerializer(users,many=True)
             return Response(serializer.data,status=status.HTTP_200_OK)
       
