@@ -16,5 +16,5 @@ urlpatterns = [
       path('category/',categoryOP.as_view(),name='category_operations'),
       path('posts/',postList.as_view(),name='post_list'),
       path('comments/', commentList.as_view(), name='comment-list'),
-      path('posts/<int:pk>',postView.singlePostList.as_view(),name='single_post')
+      path('posts/<int:pk>',postView.showSinglePostList,name='single_post')
 ]
